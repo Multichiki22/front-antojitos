@@ -1,0 +1,24 @@
+.opciones {
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    width: 100%;
+    z-index: 1000;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-left: solid lightgray 1.5px;
+    border-right: solid lightgray 1.5px;
+    border-bottom: solid lightgray 1.5px;
+    border-radius: .8vh;
+  }
+  .opciones:hover {
+    background-color: lightgray;
+  }
+  .divAutoComplete {
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
+    min-width: fit-content;
+    width: 20%;
+  }
+  
