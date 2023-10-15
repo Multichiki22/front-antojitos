@@ -172,7 +172,7 @@ function NuevoProducto() {
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="cantidadPorPaquete">
-              <Form.Label>Cantidad por paquete:</Form.Label>
+              <Form.Label>Unidades por paquete:</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Unidades por paquete"
