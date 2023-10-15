@@ -14,7 +14,7 @@ const {title, body, boton} = props
         </Modal.Header>
         <Modal.Body>{body || "Ha ocurrido un error"}</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button  style={{backgroundColor: "#00325b"}} onClick={handleClose}>
             {boton || "cerrar"}
           </Button>
         </Modal.Footer>

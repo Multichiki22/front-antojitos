@@ -91,7 +91,7 @@ function NuevaCategoria(props) {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit">
+        <Button  style={{backgroundColor: "#00325b"}} type="submit">
         {loading ? <Cargando></Cargando> : "Crear Categoria"}
         </Button>
       </Form>

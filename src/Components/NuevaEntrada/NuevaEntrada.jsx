@@ -308,7 +308,7 @@ function NuevaEntrada() {
             </Row>
           </>
         ) : null}
-        <Button variant="primary" type="submit">
+        <Button  style={{backgroundColor: "#00325b"}} type="submit">
         {loading ? <Cargando></Cargando> : "Generar entrada"}
         </Button>
         <Toast

@@ -92,7 +92,7 @@ function Login() {
           alignItems: "center",
           borderRadius: "2vh",
           padding: "5%",
-          backgroundColor: "teal",
+          backgroundColor: "#04c4d9",
           maxWidth: "400px",
         }}
       >
@@ -126,7 +126,7 @@ function Login() {
               onChange={handelChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button style={{backgroundColor: "#00325b"}} type="submit">
             {loading === true ? <Spinner /> : "Login"}
           </Button>
         </Form>

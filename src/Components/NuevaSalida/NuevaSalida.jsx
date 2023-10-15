@@ -270,7 +270,7 @@ function NuevaSalida(props) {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button  style={{backgroundColor: "#00325b"}} type="submit">
           {loading ? <Cargando></Cargando> : "Generar salida"}
         </Button>
       </Form>

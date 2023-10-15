@@ -75,7 +75,7 @@ function Inventario() {
                   <td>{producto.cantidad}</td>
                   <td>{producto.categoria.nombre}</td>
                   <td>{producto.precioDeVenta}</td>
-                  <td><Button href={`/vender?nombre=${producto.nombre}`}>Vender</Button></td>
+                  <td><Button  style={{backgroundColor: "#00325b"}} href={`/vender?nombre=${producto.nombre}`}>Vender</Button></td>
                 </tr>
               );
             })}
