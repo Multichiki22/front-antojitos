@@ -81,6 +81,7 @@ function NuevaSalida(props) {
               );
               setModal(true);
             } else if (error.response.status === 404) {
+              console.log(error);
               setTituloError("Producto no encontrado");
               setCuerpoError(
                 "Asegurese de escribir bien el nombre del producto"

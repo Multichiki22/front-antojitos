@@ -7,6 +7,7 @@ import axios from "../../axiosConfig/axiosLogin";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import Spinner from "../Cargando/Cargando";
 import { useNavigate } from "react-router-dom";
+import logoLogin from "../../Assets/Images/LogoCirculo.png"
 
 function Login() {
   const [modal, setModal] = useState(false);
@@ -102,9 +103,9 @@ function Login() {
           body={cuerpoError}
         ></ErrorModal>
         <Form className="text-center" onSubmit={handleSubmit}>
-          <h1 className="text-center">Log in</h1>
 
-          <Image src="holder.js/171x180" roundedCircle />
+
+          <Image src={logoLogin} style={{height: "110px", width: "110px", padding:"5%"}}  roundedCircle/>
           <Form.Group className="mb-3 text-center" controlId="user">
             <Form.Label>Tu usuario:</Form.Label>
             <Form.Control

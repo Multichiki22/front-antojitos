@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import navItemsByRole from "./ItemsByRole";
+import svgLogo from "../../Assets/Svg/LogoCirculo.svg"
 
 function NavBarAdmin() {
   const [modal, setModal] = useState(false);
@@ -48,7 +49,7 @@ function NavBarAdmin() {
         <Navbar.Brand href="/">
           <img
             alt=""
-            src="/img/logo.svg"
+            src={svgLogo}
             width="30"
             height="30"
             className="d-inline-block align-top"
