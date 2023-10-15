@@ -1,6 +1,6 @@
 version: '3'
 services:
-  app:
+  front_antojitos_container:
     container_name: front_antojitos_container
     image: front_antojitos_image
     restart: always
