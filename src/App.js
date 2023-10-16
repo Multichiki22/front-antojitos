@@ -17,6 +17,7 @@ import NuevoUsuario from "./Components/NuevoUsuario/NuevoUsuario";
 import ResumenHoy from "./Components/ResumenHoy/ResumenHoy";
 import Categorias from "./Components/Categorias/Categorias";
 import NuevaCategoria from "./Components/NuevaCategoria/NuevaCategora";
+import Welcome from "./Components/Welcome/Welcome";
 
 function App() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function App() {
       {location.pathname !== "/login" && <NavBarAdmin/>}
       <Routes>
         <Route />
+        <Route exact path="/" element={<Welcome />} />
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/nuevoUsuario" element={<NuevoUsuario />} />
         <Route exact path="/nuevaEntrada" element={<NuevaEntrada />} />

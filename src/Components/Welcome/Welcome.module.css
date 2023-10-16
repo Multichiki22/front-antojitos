@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-color: #04c4d9;
+}
+.logo{
+    max-width: 100%;
+    width:  50%;
+    padding-top: 8%;
+}.titulo{
+    padding-top: 5%;
+}.user{
+    padding-top: 1%;
+}
