@@ -24,7 +24,7 @@ function App() {
   const location = useLocation()
 
   
-  let isAuthenticated = false; // Ajusta tu lógica de autenticación
+  let isAuthenticated = false; 
   if (
     !!localStorage &&
     !!localStorage.accessToken &&
