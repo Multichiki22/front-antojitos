@@ -10,6 +10,7 @@ import ErrorModal from "../ErrorModal/ErrorModal";
 import Toast from "react-bootstrap/Toast";
 import { useSearchParams } from "react-router-dom";
 import styles from "./NuevaSalida.module.css";
+import Buscador from "../Buscador/buscador";
 
 function NuevaSalida(props) {
   const [modal, setModal] = useState(false);
@@ -168,7 +169,7 @@ function NuevaSalida(props) {
             onBlur={() => {
               setTimeout(() => {
                 setShowSearch(false);
-              },200);
+              }, 200);
             }}
             onFocus={() => {
               setShowSearch(true);
@@ -176,17 +177,10 @@ function NuevaSalida(props) {
             value={salidaInfo.nombreProducto}
             required
           />
-       
+
           {showSearch && (
-            <div
-              className={styles.divAutoComplete}
-            >
-              {productos
-                .filter((prodcuto) => {
-                  return prodcuto.nombre
-                    .toLowerCase()
-                    .startsWith(salidaInfo.nombreProducto.toLowerCase());
-                })
+            <div className={styles.divAutoComplete}>
+              {Buscador(productos, salidaInfo.nombreProducto.toLowerCase())
                 .map((prducto) => {
                   return (
                     salidaInfo.nombreProducto !== prducto.nombre && (
@@ -205,9 +199,8 @@ function NuevaSalida(props) {
                 })
                 .slice(0, 10)}
             </div>
-            
           )}
-             {valid || salidaInfo.nombreProducto==="" ? null : (
+          {valid || salidaInfo.nombreProducto === "" ? null : (
             <Form.Text style={{ color: "red" }}>Producto no valido</Form.Text>
           )}
         </Form.Group>
@@ -270,7 +263,7 @@ function NuevaSalida(props) {
           />
         </Form.Group>
 
-        <Button  style={{backgroundColor: "#00325b"}} type="submit">
+        <Button style={{ backgroundColor: "#00325b" }} type="submit">
           {loading ? <Cargando></Cargando> : "Generar salida"}
         </Button>
       </Form>
