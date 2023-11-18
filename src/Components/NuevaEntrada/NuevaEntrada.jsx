@@ -11,6 +11,7 @@ import Row from "react-bootstrap/esm/Row";
 import Toast from "react-bootstrap/Toast";
 
 import styles from "./NuevaEntrada.module.css"
+import Buscador from "../Buscador/buscador";
 
 function NuevaEntrada() {
   const [modal, setModal] = useState(false);
@@ -178,12 +179,7 @@ function NuevaEntrada() {
             <div
               className={styles.divAutoComplete}
             >
-              {productos
-                .filter((prodcuto) => {
-                  return prodcuto.nombre
-                    .toLowerCase()
-                    .startsWith(entradaInfo.nombreProducto.toLowerCase());
-                })
+              {Buscador(productos, entradaInfo.nombreProducto.toLowerCase())
                 .map((prducto) => {
                   return (
                     entradaInfo.nombreProducto !== prducto.nombre && (
