@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
-import Toast from "react-bootstrap/esm/Toast";
+import ToastSuccuess from "../Toast/Toast";
 
 import ErrorModal from "../ErrorModal/ErrorModal";
 import api from "../../axiosConfig/axios";
@@ -16,8 +16,8 @@ function NuevaCategoria(props) {
   const [cuerpoError, setCuerpoError] = useState("");
   const handleClose = () => setModal(false);
   const [loading, setLoading] = useState(false);
-  const [showA, setShowA] = useState(false);
-  const toggleShowA = () => setShowA(!showA);
+  const [showToast, setShowToast] = useState(false);
+  const toggleShowToast = () => setShowToast(!showToast);
 
   const [categoria, setCategoria] = useState({
     nombre: ""
@@ -37,7 +37,7 @@ function NuevaCategoria(props) {
         setCategoria({
             nombre: ""
         });
-        setShowA(true);
+        setShowToast(true);
       })
       .catch((error) => {
         if (error.response) {
@@ -95,20 +95,7 @@ function NuevaCategoria(props) {
         {loading ? <Cargando></Cargando> : "Crear Categoria"}
         </Button>
       </Form>
-      <Toast
-        bg="success"
-        style={{ position: "absolute", bottom: "10px", left: "20px" }}
-        show={showA}
-        onClose={toggleShowA}
-        delay={3000} autohide
-      >
-        <Toast.Header>
-          <strong className="me-auto">Enviado</strong>
-        </Toast.Header>
-        <Toast.Body>
-          <b>La informacion fue enviada de manera exitosa</b>
-        </Toast.Body>
-      </Toast>
+     <ToastSuccuess showToast={showToast} toggleShowToast={toggleShowToast} />
     </Container>
   );
 }

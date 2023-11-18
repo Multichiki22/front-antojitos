@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import api from "../../axiosConfig/axios";
 import Cargando from "../Cargando/Cargando";
 import ErrorModal from "../ErrorModal/ErrorModal";
-import Toast from "react-bootstrap/Toast";
+import ToastSuccuess from "../Toast/Toast";
 import { useSearchParams } from "react-router-dom";
 import styles from "./NuevaSalida.module.css";
 import Buscador from "../Buscador/buscador";
@@ -28,8 +28,8 @@ function NuevaSalida(props) {
     nota: "",
   });
   const [showSearch, setShowSearch] = useState(false);
-  const [showA, setShowA] = useState(false);
-  const toggleShowA = () => setShowA(!showA);
+  const [showToast, setShowToast] = useState(false);
+  const toggleShowToast = () => setShowToast(!showToast);
 
   const getProductos = () => {
     api
@@ -70,7 +70,7 @@ function NuevaSalida(props) {
             return params;
           });
           setPrecio(0);
-          setShowA(true);
+          setShowToast(true);
         })
         .catch((error) => {
           console.log(error.response);
@@ -267,20 +267,7 @@ function NuevaSalida(props) {
           {loading ? <Cargando></Cargando> : "Generar salida"}
         </Button>
       </Form>
-      <Toast
-        bg="success"
-        style={{ position: "absolute", bottom: "10px", left: "20px" }}
-        show={showA}
-        onClose={toggleShowA}
-        delay={3000} autohide
-      >
-        <Toast.Header>
-          <strong className="me-auto">Enviado</strong>
-        </Toast.Header>
-        <Toast.Body>
-          <b>La informacion fue enviada de manera exitosa</b>
-        </Toast.Body>
-      </Toast>
+      <ToastSuccuess showToast={showToast} toggleShowToast={toggleShowToast} />
     </Container>
   );
 }
