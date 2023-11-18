@@ -130,6 +130,7 @@ function NuevoUsuario(props) {
         style={{ position: "absolute", bottom: "10px", left: "20px" }}
         show={showA}
         onClose={toggleShowA}
+        delay={3000} autohide
       >
         <Toast.Header>
           <strong className="me-auto">Enviado</strong>
