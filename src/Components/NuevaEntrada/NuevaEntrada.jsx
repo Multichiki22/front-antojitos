@@ -13,6 +13,7 @@ import ToastSuccuess from "../Toast/Toast";
 
 import styles from "./NuevaEntrada.module.css"
 import Buscador from "../Buscador/buscador";
+import formatNumbers from "../../utilities/formatNumbers";
 
 function NuevaEntrada() {
   const [modal, setModal] = useState(false);
@@ -73,7 +74,6 @@ function NuevaEntrada() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(entradaInfo);
     const found = productos.find(
       (prodcuto) => prodcuto.nombre === entradaInfo.nombreProducto
     );
@@ -245,13 +245,13 @@ function NuevaEntrada() {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Valor de la entrada: </Form.Label>
-              <Form.FloatingLabel>{`${valorEntrada} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(valorEntrada)} $`}</Form.FloatingLabel>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Costo de cada unidad: </Form.Label>
-              <Form.FloatingLabel>{`${costoUnidad} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(costoUnidad)} $`}</Form.FloatingLabel>
             </Form.Group>
           </Col>
           <Col>
@@ -293,13 +293,13 @@ function NuevaEntrada() {
               <Col>
                 <Form.Group className="mb-3">
                   <Form.Label>Ganancia de cada unidad: </Form.Label>
-                  <Form.FloatingLabel>{`${ganaciaUnidad} $`}</Form.FloatingLabel>
+                  <Form.FloatingLabel>{`${formatNumbers(ganaciaUnidad)} $`}</Form.FloatingLabel>
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group className="mb-3">
                   <Form.Label>Porcentaje de Ganancia: </Form.Label>
-                  <Form.FloatingLabel>{`${porcentajeGanancia}%`}</Form.FloatingLabel>
+                  <Form.FloatingLabel>{`${formatNumbers(porcentajeGanancia)}%`}</Form.FloatingLabel>
                 </Form.Group>
               </Col>
             </Row>
