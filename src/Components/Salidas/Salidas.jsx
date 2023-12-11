@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import api from "../../axiosConfig/axios";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import Cargando from "../Cargando/Cargando";
+import formatNumbers from "../../utilities/formatNumbers";
 
 function Salidas(props) {
   const [modal, setModal] = useState(false);
@@ -72,7 +73,7 @@ function Salidas(props) {
                     <td>{element.id}</td>
                     <td>{element.producto.nombre}</td>
                     <td>{element.cantidad}</td>
-                    <td>{element.valorSalida}</td>
+                    <td>{`$ ${formatNumbers(element.valorSalida)}`}</td>
                     <td>{element.motivo.nombre}</td>
                     <td>{element.fecha}</td>
                     <td>{element.nota}</td>
