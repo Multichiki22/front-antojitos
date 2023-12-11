@@ -11,13 +11,26 @@ import ToastSuccuess from "../Toast/Toast";
 import { useSearchParams } from "react-router-dom";
 import styles from "./NuevaSalida.module.css";
 import Buscador from "../Buscador/buscador";
+import formatNumbers from "../../utilities/formatNumbers";
 
 function NuevaSalida(props) {
+  /* <--------------- Modal Error -------------------> */
   const [modal, setModal] = useState(false);
   const [tituloError, setTituloError] = useState("");
   const [cuerpoError, setCuerpoError] = useState("");
   const handleClose = () => setModal(false);
+
+  /* <--------------- Loading -------------------> */
   const [loading, setLoading] = useState(false);
+
+  /* <--------------- Busqueda / Sugerencias -------------------> */
+  const [showSearch, setShowSearch] = useState(false);
+
+   /* <--------------- Toast of succes -------------------> */
+  const [showToast, setShowToast] = useState(false);
+  const toggleShowToast = () => setShowToast(!showToast);
+
+   /* <--------------- Logica negocio -------------------> */
   const [productos, setProductos] = useState([]);
   const [valid, setValid] = useState(true);
   const [precio, setPrecio] = useState(0);
@@ -27,9 +40,6 @@ function NuevaSalida(props) {
     motivo: "Venta",
     nota: "",
   });
-  const [showSearch, setShowSearch] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const toggleShowToast = () => setShowToast(!showToast);
 
   const getProductos = () => {
     api
@@ -73,7 +83,6 @@ function NuevaSalida(props) {
           setShowToast(true);
         })
         .catch((error) => {
-          console.log(error.response);
           if (error.response) {
             if (error.response.status === 400) {
               setTituloError("Error con los datos");
@@ -82,7 +91,6 @@ function NuevaSalida(props) {
               );
               setModal(true);
             } else if (error.response.status === 404) {
-              console.log(error);
               setTituloError("Producto no encontrado");
               setCuerpoError(
                 "Asegurese de escribir bien el nombre del producto"
@@ -241,12 +249,12 @@ function NuevaSalida(props) {
           <Row>
             <Col>
               <Form.Label>Precio del producto: </Form.Label>
-              <Form.FloatingLabel>{`${precio} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(precio)} $`}</Form.FloatingLabel>
             </Col>
             <Col>
               <Form.Label>Valor de la salida: </Form.Label>
               <Form.FloatingLabel>
-                {`${precio * salidaInfo.cantidadSaliente} $`}
+                {`${formatNumbers(precio * salidaInfo.cantidadSaliente)} $`}
               </Form.FloatingLabel>
             </Col>
           </Row>
