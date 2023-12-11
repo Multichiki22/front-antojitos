@@ -60,8 +60,6 @@ api.interceptors.response.use(
           guardarTokenDeAcceso(newAccessToken);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           replayFailedRequests();
-
-          console.log("Renovacion de token");
           return api(originalRequest);
         })
         .catch((refreshError) => {
