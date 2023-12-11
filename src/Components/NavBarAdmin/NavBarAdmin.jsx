@@ -20,7 +20,6 @@ function NavBarAdmin() {
       .post("/auth/logout")
       .then((response) => {})
       .catch((error) => {
-        console.log(error);
         setTituloError("Error con el servidor");
         setCuerpoError(
           `Ha ocurrido un error con el servidor intentalo mas tarde: \n Error Name: ${error.message}`
