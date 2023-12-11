@@ -10,6 +10,7 @@ import ErrorModal from "../ErrorModal/ErrorModal";
 import api from "../../axiosConfig/axios";
 import Cargando from "../Cargando/Cargando";
 import { useEffect, useState } from "react";
+import formatNumbers from "../../utilities/formatNumbers";
 
 function NuevoProducto() {
   const [modal, setModal] = useState(false);
@@ -62,7 +63,6 @@ function NuevoProducto() {
     api
       .get("productos/vigentes")
       .then((response) => {
-        console.log("productos:", productos);
         setProductos(response.data);
       })
       .catch((error) => {
@@ -78,7 +78,6 @@ function NuevoProducto() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(productos);
     const found = productos.find(
       (prodcuto) =>
         prodcuto.nombre.toLowerCase() === entradaInfo.nombre.toLowerCase()
@@ -106,7 +105,6 @@ function NuevoProducto() {
           setShowToast(true);
         })
         .catch((error) => {
-          console.log(error.response);
           if (error.response) {
             if (error.response.status === 400) {
               setTituloError("Error con los datos");
@@ -249,7 +247,7 @@ function NuevoProducto() {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Costo total de la entrada: </Form.Label>
-              <Form.FloatingLabel>{`${valorEntrada} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(valorEntrada)} $`}</Form.FloatingLabel>
             </Form.Group>
           </Col>
         </Row>
@@ -257,13 +255,13 @@ function NuevoProducto() {
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Costo de cada unidad: </Form.Label>
-              <Form.FloatingLabel>{`${costoUnidad} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(costoUnidad)} $`}</Form.FloatingLabel>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Ganancia de cada unidad: </Form.Label>
-              <Form.FloatingLabel>{`${ganaciaUnidad} $`}</Form.FloatingLabel>
+              <Form.FloatingLabel>{`${formatNumbers(ganaciaUnidad)} $`}</Form.FloatingLabel>
             </Form.Group>
           </Col>
           <Col>
