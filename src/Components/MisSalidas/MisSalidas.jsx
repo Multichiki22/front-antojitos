@@ -3,6 +3,7 @@ import api from "../../axiosConfig/axios";
 import { useState, useEffect } from "react";
 import Cargando from "../Cargando/Cargando";
 import ErrorModal from "../ErrorModal/ErrorModal";
+import formatNumbers from "../../utilities/formatNumbers";
 function MisSalidas() {
   const [modal, setModal] = useState(false);
   const [tituloError, setTituloError] = useState("");
@@ -70,7 +71,7 @@ function MisSalidas() {
                     <td>{element.id}</td>
                     <td>{element.producto.nombre}</td>
                     <td>{element.cantidad}</td>
-                    <td>{element.valorSalida}</td>
+                    <td>{`$ ${formatNumbers(element.valorSalida)}`}</td>
                     <td>{element.motivo.nombre}</td>
                     <td>{element.fecha}</td>
                     <td>{element.nota}</td>
