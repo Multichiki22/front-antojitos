@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import Cargando from "../Cargando/Cargando";
 import Container from "react-bootstrap/esm/Container";
-import Button from "react-bootstrap/esm/Button";
+import ButtonSelection from "../ButtonSelection/ButtonSelection";
+import formatNumbers from "../../utilities/formatNumbers";
 
 function Inventario() {
   const [modal, setModal] = useState(false);
@@ -63,7 +64,7 @@ function Inventario() {
               <th>Cantidad</th>
               <th>Categoria</th>
               <th>Precio de venta</th>
-              <th>Vender</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -74,8 +75,8 @@ function Inventario() {
                   <td>{producto.nombre}</td>
                   <td>{producto.cantidad}</td>
                   <td>{producto.categoria.nombre}</td>
-                  <td>{producto.precioDeVenta}</td>
-                  <td><Button  style={{backgroundColor: "#00325b"}} href={`/vender?nombre=${producto.nombre}`}>Vender</Button></td>
+                  <td>{`$ ${formatNumbers(producto.precioDeVenta)}`}</td>
+                  <td><ButtonSelection producto={producto}></ButtonSelection></td>
                 </tr>
               );
             })}
