@@ -18,6 +18,8 @@ import ResumenHoy from "./Components/ResumenHoy/ResumenHoy";
 import Categorias from "./Components/Categorias/Categorias";
 import NuevaCategoria from "./Components/NuevaCategoria/NuevaCategora";
 import Welcome from "./Components/Welcome/Welcome";
+import Historico from "./views/Historico/Historico";
+import EditarProducto from "./views/EditarProducto/EditarProducto";
 
 function App() {
   const navigate = useNavigate();
@@ -57,6 +59,8 @@ function App() {
         <Route exact path="/inventario" element={<Inventario />} />
         <Route exact path="/categorias" element={<Categorias />} />
         <Route exact path="/nuevaCategoria" element={<NuevaCategoria />} />
+        <Route exact path="/producto/editar/:id" element={<EditarProducto />} />
+        <Route exact path="/historico" element={<Historico />} />
         <Route path="/vender" element={<NuevaSalida />} />
       </Routes>
     </div>
