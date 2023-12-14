@@ -1,6 +1,7 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
+RUN npm config delete proxy
 RUN npm install --verbose
 COPY . .
 RUN npm run build
