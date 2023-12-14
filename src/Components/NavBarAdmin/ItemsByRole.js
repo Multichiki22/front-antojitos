@@ -52,7 +52,9 @@ const navItemsByRole = {
     </>,
   ],
   Vendedor: [
-    {salidasVendedor}
+    <>
+       {salidasVendedor}
+    </>
   ],
   SuperAdmin: [
     <>
