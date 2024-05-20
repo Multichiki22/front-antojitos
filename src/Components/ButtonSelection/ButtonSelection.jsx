@@ -20,17 +20,14 @@ function ButtonSelection(props) {
     <div>
       {multiButton ? (
         <div style={{ display: 'flex', gap: '1%' }}>
-          <Button style={{ backgroundColor: '#00325b', border: 'none' }} href={`/vender?nombre=${producto.nombre}`}>
+          <Button style={{ backgroundColor: '#00325b', border: 'none' }} href={`/vender/${producto.id}`}>
             Vender
           </Button>
-          {/*           <Button
-            style={{ backgroundColor: "#00325b" }}
-            href={`/vender?nombre=${producto.nombre}`}
-          >
-            Detalles
-          </Button> */}
           <Button style={{ backgroundColor: '#00325b', border: 'none' }} href={`/producto/editar/${producto.id}`}>
             Editar
+          </Button>
+          <Button style={{ backgroundColor: '#00325b', border: 'none' }} href={`/entradasProducto/${producto.id}`}>
+            Entradas
           </Button>
         </div>
       ) : (
