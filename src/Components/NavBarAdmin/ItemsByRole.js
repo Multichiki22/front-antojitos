@@ -4,6 +4,8 @@ const entradas = (
   <NavDropdown title="Entradas" id="basic-nav-dropdown">
     <NavDropdown.Item href="/nuevaEntrada">Nueva entrada</NavDropdown.Item>
     <NavDropdown.Item href="/nuevoProducto">Nuevo Producto</NavDropdown.Item>
+    <NavDropdown.Divider />
+    <NavDropdown.Item href="/entradasFecha">Entradas por fecha</NavDropdown.Item>
   </NavDropdown>
 );
 
