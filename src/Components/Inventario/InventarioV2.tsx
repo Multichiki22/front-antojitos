@@ -148,7 +148,7 @@ export default function InventarioV2() {
 
   return (
   
-    <Box sx={{overflow: 'auto',  width: '100%', display: 'flex', justifyContent: 'center', my: 2, px: 0 }} >
+    <Box sx={{overflow: 'auto',  width: '100%', display: 'flex', justifyContent: 'center', py: 2, px: 0 }} >
       <Paper sx={{overflow: 'auto', minWidth: '90%'}}>
         <Toolbar
           sx={{
