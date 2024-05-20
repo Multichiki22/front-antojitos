@@ -121,7 +121,7 @@ export default function InventarioV2() {
   const fetchData = async () => {
     setLoading(true);
     productService
-      .getVigentes()
+      .getProductosActuales()
       .then((result) => {
         setData(result);
         showSuccess('Success');
