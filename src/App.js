@@ -20,7 +20,7 @@ import Historico from "./views/Historico/Historico.jsx";
 import EditarProducto from "./views/EditarProducto/EditarProducto";
 import NuevoProductoV2 from "./views/NuevoProductoV2/NuevoProductoV2.tsx";
 import EntradasFechaView from "./views/HistoricoEntradasFecha/EntradasFechaView.tsx";
-import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradasFechaView.tsx";
+import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradasFechaProducto.tsx";
 import InventarioView from "./views/InventarioView/InventarioView.tsx";
 import NuevaSalidaV2 from "./Components/NuevaSalida/NuevaSalidaV2.tsx";
 
