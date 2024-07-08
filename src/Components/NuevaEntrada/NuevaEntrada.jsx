@@ -14,8 +14,10 @@ import ToastSuccuess from "../Toast/Toast";
 import styles from "./NuevaEntrada.module.css"
 import Buscador from "../Buscador/buscador";
 import formatNumbers from "../../utilities/formatNumbers";
+import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 
 function NuevaEntrada() {
+  const { showError, showSuccess } = useSnackBar();
   const [modal, setModal] = useState(false);
   const [tituloError, setTituloError] = useState("");
   const [cuerpoError, setCuerpoError] = useState("");
@@ -82,9 +84,11 @@ function NuevaEntrada() {
       setCuerpoError("Asegurese de escribir bien el nombre del producto");
       setModal(true);
     } else {
+      setLoading(true);
       api
         .post("entradas", entradaInfo)
         .then((response) => {
+          showSuccess("Entrada generada exitosamente")
           setEntradaInfo({
             nombreProducto: "",
             cantidadPorPaquete: "",
@@ -97,32 +101,12 @@ function NuevaEntrada() {
         })
         .catch((error) => {
           console.log(error.response);
-          if (error.response) {
-            if (error.response.status === 400) {
-              setTituloError("Error con los datos");
-              setCuerpoError(
-                error.response.data.message.toString().replace(",", ".\n")
-              );
-              setModal(true);
-            } else if (error.response.status === 404) {
-              setTituloError("Producto no encontrado");
-              setCuerpoError(
-                "Asegurese de escribir bien el nombre del producto"
-              );
-              setModal(true);
-            }
-          } else {
-            setTituloError("Error con el servidor");
-            setCuerpoError(
-              `Ha ocurrido un error con el servidor intentalo mas tarde: \n Error Name: ${error.message}`
-            );
-            setModal(true);
-          }
+          showError(error.response?.data?.message || "error inesperado")
         })
         .finally(() => {
           setLoading(false);
         });
-      setLoading(true);
+      
     }
   };
   const costoUnidad =
