@@ -4,6 +4,6 @@ import Inventario from "../../Components/Inventario/Inventario.jsx";
 
 export default function InventarioView() {
     return(
-        <Inventario/>
+        <InventarioV2/>
     )
 }

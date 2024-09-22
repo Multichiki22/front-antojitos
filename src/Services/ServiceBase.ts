@@ -38,10 +38,10 @@ const ServiceBase = {
     return await api.post(url, data).then(handleResponse).catch(handleError);
   },
   put: async (url: string, data: any) => {
-    return await api.post(url, data).then(handleResponse).catch(handleError);
+    return await api.put(url, data).then(handleResponse).catch(handleError);
   },
   delete: async (url: string, data: any) => {
-    return await api.post(url, data).then(handleResponse).catch(handleError);
+    return await api.delete(url, data).then(handleResponse).catch(handleError);
   },
 };
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import BuildIcon from '@mui/icons-material/Build';
 import { useNavigate } from 'react-router-dom';
 
 interface actionButtonsProps {

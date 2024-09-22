@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   Box,
   Paper,
@@ -17,6 +17,7 @@ import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 import productService from '../../Services/ProductService.ts';
 import ActionButtons from '../ButtonSelection/ActionButtons.tsx';
 import formatNumbers from '../../utilities/formatNumbers.js';
+import Spinner from 'react-bootstrap/esm/Spinner';
 
 interface Data {
   id: number;
@@ -111,7 +112,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
-export default function InventarioV2() {
+const InventarioV2Memo = memo(function InventarioV2() {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof Data>('cantidad');
   const [data, setData] = useState<Data[]>([]);
@@ -147,9 +148,8 @@ export default function InventarioV2() {
   const visibleRows = React.useMemo(() => stableSort(data, getComparator(order, orderBy)), [order, orderBy, data]);
 
   return (
-  
-    <Box sx={{overflow: 'auto',  width: '100%', display: 'flex', justifyContent: 'center', py: 2, px: 0 }} >
-      <Paper sx={{overflow: 'auto', minWidth: '90%'}}>
+    <Box sx={{ overflow: 'auto', width: '100%', display: 'flex', justifyContent: 'center', py: 2, px: 0 }}>
+      <Paper sx={{ overflow: 'auto', minWidth: '90%' }}>
         <Toolbar
           sx={{
             pl: { sm: 2 },
@@ -161,38 +161,43 @@ export default function InventarioV2() {
           </Typography>
           {/* Place here the searchBar */}
         </Toolbar>
-        <TableContainer >
-          <Table aria-labelledby="tableTitle" size="small" sx={{ minWidth: '100%'}}>
-            <EnhancedTableHead order={order} orderBy={orderBy} onSort={handleRequestSort} />
-            <TableBody >
-              {visibleRows.map((row, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
+        {loading ? (
+          <Spinner />
+        ) : (
+          <TableContainer>
+            <Table aria-labelledby="tableTitle" size="small" sx={{ minWidth: '100%' }}>
+              <EnhancedTableHead order={order} orderBy={orderBy} onSort={handleRequestSort} />
+              <TableBody>
+                {visibleRows.map((row, index) => {
+                  const labelId = `enhanced-table-checkbox-${index}`;
 
-                return (
-                  <TableRow hover tabIndex={-1} key={row.id} sx={{ cursor: 'pointer' }}>
-                    <TableCell component="th" id={labelId} scope="row" padding="normal">
-                      {row.id}
-                    </TableCell>
-                    <TableCell component="th" id={labelId} scope="row" padding="normal">
-                      {row.nombre}
-                    </TableCell>
-                    <TableCell align="left" padding="normal">
-                      {row.cantidad}
-                    </TableCell>
-                    <TableCell align="left" padding="normal">
-                      $ {formatNumbers(row.precioDeVenta)}
-                    </TableCell>
-                    <TableCell align="center" padding="normal">
-                      <ActionButtons productId={row.id}></ActionButtons>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  return (
+                    <TableRow hover tabIndex={-1} key={row.id} sx={{ cursor: 'pointer' }}>
+                      <TableCell component="th" id={labelId} scope="row" padding="normal">
+                        {row.id}
+                      </TableCell>
+                      <TableCell component="th" id={labelId} scope="row" padding="normal">
+                        {row.nombre}
+                      </TableCell>
+                      <TableCell align="left" padding="normal">
+                        {row.cantidad}
+                      </TableCell>
+                      <TableCell align="left" padding="normal">
+                        $ {formatNumbers(row.precioDeVenta)}
+                      </TableCell>
+                      <TableCell align="center" padding="normal">
+                        <ActionButtons productId={row.id}></ActionButtons>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </Paper>
     </Box>
-  
   );
-}
+});
+
+export default InventarioV2Memo;

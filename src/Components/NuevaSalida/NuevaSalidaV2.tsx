@@ -188,6 +188,7 @@ const NuevaSalidaV2 = () => {
                   <MenuItem value={'Perdida'}>Perdida</MenuItem>
                   <MenuItem value={'Robo'}>Robo</MenuItem>
                   <MenuItem value={'Daño'}>Daño</MenuItem>
+                  <MenuItem value={'Ajuste'}>Ajuste</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

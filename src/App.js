@@ -22,6 +22,7 @@ import EntradasFechaView from "./views/HistoricoEntradasFecha/EntradasFechaView.
 import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradasFechaProducto.tsx";
 import InventarioView from "./views/InventarioView/InventarioView.tsx";
 import NuevaSalidaV2 from "./Components/NuevaSalida/NuevaSalidaV2.tsx";
+import EditarProductosView from "./views/EditarProducto/EditarProductoV2.tsx";
 
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
         <Route exact path="/inventario" element={<InventarioView />} />
         <Route exact path="/categorias" element={<Categorias />} />
         <Route exact path="/nuevaCategoria" element={<NuevaCategoria />} />
-        <Route exact path="/producto/editar/:id" element={<EditarProducto />} />
+        <Route exact path="/producto/editar/:id" element={<EditarProductosView />} />
         <Route exact path="/historico" element={<Historico />} />
         <Route exact path="/entradasFecha/:fecha?" element={<EntradasFechaView />} />
         <Route exact path="/entradasProducto/:id" element={<EntradasProductoView />} />
