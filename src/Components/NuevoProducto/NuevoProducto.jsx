@@ -10,7 +10,7 @@ import ErrorModal from "../ErrorModal/ErrorModal";
 import api from "../../axiosConfig/axios";
 import Cargando from "../Cargando/Cargando";
 import { useEffect, useState } from "react";
-import formatNumbers from "../../utilities/formatNumbers";
+import formatNumbers from "../../utilities/formatNumbers.ts";
 
 function NuevoProducto() {
   const [modal, setModal] = useState(false);
