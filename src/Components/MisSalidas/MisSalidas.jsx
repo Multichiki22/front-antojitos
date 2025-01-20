@@ -3,7 +3,7 @@ import api from "../../axiosConfig/axios";
 import { useState, useEffect } from "react";
 import Cargando from "../Cargando/Cargando";
 import ErrorModal from "../ErrorModal/ErrorModal";
-import formatNumbers from "../../utilities/formatNumbers";
+import formatNumbers from "../../utilities/formatNumbers.ts";
 function MisSalidas() {
   const [modal, setModal] = useState(false);
   const [tituloError, setTituloError] = useState("");

@@ -2,7 +2,8 @@ import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, Tabl
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React from 'react';
-import formatNumbers from '../../utilities/formatNumbers';
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import formatNumbers from '../../utilities/formatNumbers.ts';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -10,6 +11,7 @@ import dayjs from 'dayjs';
 interface Entrada {
   id: number;
   producto: {
+    id: string;
     nombre: string;
   };
   totalDeProuctosComprados: number;
@@ -27,7 +29,7 @@ interface Entrada {
 function RowEntradasProducto(props: { entrada: Entrada }) {
   const { entrada } = props;
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -46,11 +48,18 @@ function RowEntradasProducto(props: { entrada: Entrada }) {
         <TableCell>
           <IconButton
             onClick={() => {
-             const fechaSalida =  dayjs(entrada.fecha).format('YYYY-MM-DD')
+              const fechaSalida = dayjs(entrada.fecha).format('YYYY-MM-DD');
               navigate(`/entradasFecha/${fechaSalida}`);
             }}
           >
             <EventNoteIcon />
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              navigate(`/salidasProducto/${entrada.producto.id}`);
+            }}
+          >
+            <PlaylistRemoveIcon />
           </IconButton>
         </TableCell>
       </TableRow>

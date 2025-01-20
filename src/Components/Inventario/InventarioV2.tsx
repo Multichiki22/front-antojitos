@@ -16,7 +16,7 @@ import { visuallyHidden } from '@mui/utils';
 import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 import productService from '../../Services/ProductService.ts';
 import ActionButtons from '../ButtonSelection/ActionButtons.tsx';
-import formatNumbers from '../../utilities/formatNumbers.js';
+import formatNumbers from '../../utilities/formatNumbers.ts';
 import Spinner from 'react-bootstrap/esm/Spinner';
 
 interface Data {
@@ -43,13 +43,21 @@ const headCells: readonly HeadCell[] = [
 
 type Order = 'asc' | 'desc';
 
-function comparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
+function comparator<T>(a: T, b: T, orderBy: keyof T): number {
+  const aValue = a[orderBy];
+  const bValue = b[orderBy];
+  
+  if (typeof aValue === 'string' && typeof bValue === 'string') {
+    // Usando localeCompare para un mejor manejo de strings y caracteres especiales
+    return aValue.toLowerCase().localeCompare(bValue.toLowerCase(), 'es', { 
+      sensitivity: 'base',
+      ignorePunctuation: true 
+    });
   }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+  
+  // Para valores no string
+  if (bValue < aValue) return -1;
+  if (bValue > aValue) return 1;
   return 0;
 }
 
@@ -92,19 +100,24 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             sortDirection={orderBy === headCell.id ? order : false}
             sx={{ maxWidth: headCell.width }}
           >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-              sx={{ display: 'flex' }}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
+            {/* Si es la columna de acciones, solo mostrar el texto */}
+            {headCell.label === 'Acciones' ? (
+              headCell.label
+            ) : (
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                onClick={createSortHandler(headCell.id)}
+                sx={{ display: 'flex' }}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <Box component="span" sx={visuallyHidden}>
+                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  </Box>
+                ) : null}
+              </TableSortLabel>
+            )}
           </TableCell>
         ))}
       </TableRow>
@@ -117,7 +130,9 @@ const InventarioV2Memo = memo(function InventarioV2() {
   const [orderBy, setOrderBy] = useState<keyof Data>('cantidad');
   const [data, setData] = useState<Data[]>([]);
   const [loading, setLoading] = useState(true);
+  const [multiButton, setMultiButton] = useState(false);
   const { showError, showSuccess } = useSnackBar();
+  const aprovedRoles = ['SuperAdmin', 'Admin'];
 
   const fetchData = async () => {
     setLoading(true);
@@ -136,6 +151,12 @@ const InventarioV2Memo = memo(function InventarioV2() {
   };
 
   useEffect(() => {
+    const role = localStorage.getItem('role');
+    if (role) {
+      if (aprovedRoles.includes(role)) {
+        setMultiButton(true);
+      }
+    }
     fetchData();
   }, []);
 
@@ -156,7 +177,7 @@ const InventarioV2Memo = memo(function InventarioV2() {
             pr: { xs: 1, sm: 1 },
           }}
         >
-          <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
+          <Typography sx={{ flex: '1 1 100%', color: 'black ' }} variant="h6" id="tableTitle" component="div">
             Productos
           </Typography>
           {/* Place here the searchBar */}
@@ -186,7 +207,7 @@ const InventarioV2Memo = memo(function InventarioV2() {
                         $ {formatNumbers(row.precioDeVenta)}
                       </TableCell>
                       <TableCell align="center" padding="normal">
-                        <ActionButtons productId={row.id}></ActionButtons>
+                        <ActionButtons productId={row.id} multiButton={multiButton}></ActionButtons>
                       </TableCell>
                     </TableRow>
                   );

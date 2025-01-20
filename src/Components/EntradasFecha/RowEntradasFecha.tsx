@@ -2,7 +2,7 @@ import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, Tabl
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React from 'react';
-import formatNumbers from '../../utilities/formatNumbers';
+import formatNumbers from '../../utilities/formatNumbers.ts';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { useNavigate } from 'react-router-dom';
 

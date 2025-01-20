@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-import formatNumbers from "../../utilities/formatNumbers";
+import formatNumbers from "../../utilities/formatNumbers.ts";
 function TablaSalidas(props){
   const {salidas, usuario} = props
     return (

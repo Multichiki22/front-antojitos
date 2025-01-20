@@ -1,8 +1,8 @@
+
 import {
   Box,
   Container,
   Paper,
-  styled,
   Table,
   TableBody,
   TableCell,
@@ -14,16 +14,17 @@ import {
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import React, { useEffect, useState } from 'react';
-import RowEntradasFecha from './RowEntradasFecha.tsx';
-import entradasService from '../../Services/EntradasService.ts';
+import salidasService from '../../Services/SalidasService.ts';
 import dayjs from 'dayjs';
 import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import theme from '../../theme/theme.js';
 import Cargando from '../Cargando/Cargando.jsx';
+import RowSalidasFecha from './RowsSalidaFecha.tsx';
+import { salidasType } from '../../types/salidasType.ts';
 
-const EntradasFecha = () => {
-  const [entradas, setEntradas] = useState([]);
+const SalidasFecha = () => {
+  const [salidas, setSalidas] = useState<salidasType[]>([]);
   const [fechaBusqueda, setFechaBusqueda] = useState(dayjs());
   const { showError, showSuccess } = useSnackBar();
   const [loading, setLoading] = useState(false);
@@ -32,11 +33,11 @@ const EntradasFecha = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    entradasService
+    salidasService
       .getHistoricoFecha(fechaBusqueda.format('YYYY-MM-DD'))
       .then((result) => {
-        setEntradas(result);
-        showSuccess('Succes');
+        setSalidas(result);
+        showSuccess('Success');
       })
       .catch((error) => {
         showError(error.message);
@@ -47,7 +48,7 @@ const EntradasFecha = () => {
   };
 
   const handleDateChange = (date) => {
-    navigate(`/entradasFecha/${date}`);
+    navigate(`/salidasFecha/${date}`);
   };
 
   useEffect(() => {
@@ -75,7 +76,7 @@ const EntradasFecha = () => {
             }}
           >
             <Typography sx={{ flex: '1 1 100%' }} variant="h5" id="title" component="div">
-              Entradas por fecha
+              Histórico salidas
             </Typography>
           </Toolbar>
           <DatePicker
@@ -85,7 +86,6 @@ const EntradasFecha = () => {
             onChange={handleDateChange}
             maxDate={dayjs()}
             sx={{
-              body: 'red',
               borderColor: '#2196f3',
               '& .MuiInputBase-input': {
                 color: 'white',
@@ -97,34 +97,31 @@ const EntradasFecha = () => {
                 borderColor: '#00e4f3',
               },
               '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#00e4f3',
-              },  
+                borderColor: 'aqua',
+              },
             }}
           />
-          {/* <Button sx={{ height: '2.4rem' }} variant="contained" onClick={fetchData}>
-          {loading ? <CircularProgress size={'1.5rem'} color="secondary" /> : 'Buscar'}
-        </Button> */}
         </Box>
         {loading ? (
           <Cargando />
         ) : (
           <>
-            {entradas.length > 0 ? (
+            {salidas.length > 0 ? (
               <TableContainer component={Paper} sx={{ width: '100%' }}>
                 <Table aria-label="collapsible table">
                   <TableHead>
                     <TableRow>
                       <TableCell />
                       <TableCell>Producto</TableCell>
-                      <TableCell>Total entrados</TableCell>
-                      <TableCell>Costo individual</TableCell>
+                      <TableCell>Cantidad salida</TableCell>
+                      <TableCell>Valor salida</TableCell>
                       <TableCell>Fecha</TableCell>
                       <TableCell>Producto</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {entradas.map((entrada) => (
-                      <RowEntradasFecha entrada={entrada} />
+                    {salidas.map((salida) => (
+                      <RowSalidasFecha key={salida.id} salida={salida} />
                     ))}
                   </TableBody>
                 </Table>
@@ -132,7 +129,7 @@ const EntradasFecha = () => {
             ) : (
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Typography variant="h6">
-                  <u>No se encontraon entradas ese dia</u>
+                  <u>No se encontraron salidas ese día</u>
                 </Typography>
               </Box>
             )}
@@ -142,4 +139,5 @@ const EntradasFecha = () => {
     </>
   );
 };
-export default EntradasFecha;
+
+export default SalidasFecha;

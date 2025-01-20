@@ -21,12 +21,59 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Arial, sans-serif',
+    h4: {
+      fontWeight: "bold",
+      color: "white", 
+    },
+    h6: {
+      color: "white", 
+    },
+    body1: {
+      color: "white", // X color para body1
+    },
+    body2: {
+      color: "lightslategrey", // Y color para body2
+    },
+    body3: {
+      color: "black",
+    }
   },
   components: {
     MuiFilledInput: {
       styleOverrides: {
         root: {
           color: 'white', 
+        },
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        label: {
+          color: '#000000'
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          color: 'white', 
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: "lightBlue",
+          },
+          color: 'black',
+        },
+      },
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        paper: {
+          color: 'black',
         },
       },
     },

@@ -13,7 +13,7 @@ import ToastSuccuess from "../Toast/Toast";
 
 import styles from "./NuevaEntrada.module.css"
 import Buscador from "../Buscador/buscador";
-import formatNumbers from "../../utilities/formatNumbers";
+import formatNumbers from "../../utilities/formatNumbers.ts";
 import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 
 function NuevaEntrada() {

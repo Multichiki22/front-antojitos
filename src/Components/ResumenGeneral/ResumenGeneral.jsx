@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import formatNumbers from '../../utilities/formatNumbers';
+import formatNumbers from '../../utilities/formatNumbers.ts';
 
 function ResumenGeneral(props) {
   const { resumen } = props;

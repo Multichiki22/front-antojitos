@@ -9,7 +9,6 @@ import NavBarAdmin from "./Components/NavBarAdmin/NavBarAdmin";
 import Login from "./Components/Login/Login";
 import Salidas from "./Components/Salidas/Salidas";
 import NuevaEntrada from "./Components/NuevaEntrada/NuevaEntrada";
-import NuevoProducto from "./Components/NuevoProducto/NuevoProducto";
 import Usuarios from "./Components/Usuarios/Usuarios";
 import NuevoUsuario from "./Components/NuevoUsuario/NuevoUsuario";
 import ResumenHoy from "./Components/ResumenHoy/ResumenHoy";
@@ -17,12 +16,14 @@ import Categorias from "./Components/Categorias/Categorias";
 import NuevaCategoria from "./Components/NuevaCategoria/NuevaCategora";
 import Welcome from "./Components/Welcome/Welcome";
 import Historico from "./views/Historico/Historico.jsx";
-import EditarProducto from "./views/EditarProducto/EditarProducto";
 import EntradasFechaView from "./views/HistoricoEntradasFecha/EntradasFechaView.tsx";
-import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradasFechaProducto.tsx";
 import InventarioView from "./views/InventarioView/InventarioView.tsx";
 import NuevaSalidaV2 from "./Components/NuevaSalida/NuevaSalidaV2.tsx";
 import EditarProductosView from "./views/EditarProducto/EditarProductoV2.tsx";
+import NuevoProductoV2 from "./views/NuevoProductoV2/NuevoProductoV2.tsx";
+import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradaProductoView.tsx";
+import SalidasProdcutoView from "./views/HistoricoSalidasProducto/SalidasProductoView.tsx";
+import SalidasFecha from "./Components/SalidasFecha/SalidasFecha.tsx";
 
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/nuevoUsuario" element={<NuevoUsuario />} />
         <Route exact path="/nuevaEntrada" element={<NuevaEntrada />} />
-        <Route exact path="/nuevoProducto" element={<NuevoProducto />} />
+        <Route exact path="/nuevoProducto" element={<NuevoProductoV2 />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/misSalidas" element={<MisSalidas />} />
         <Route exact path="/salidas" element={<Salidas />} />
@@ -66,7 +67,9 @@ function App() {
         <Route exact path="/producto/editar/:id" element={<EditarProductosView />} />
         <Route exact path="/historico" element={<Historico />} />
         <Route exact path="/entradasFecha/:fecha?" element={<EntradasFechaView />} />
-        <Route exact path="/entradasProducto/:id" element={<EntradasProductoView />} />
+        <Route exact path="/salidasFecha/:fecha?" element={<SalidasFecha />} />
+        <Route exact path="/entradasProducto/:id?" element={<EntradasProductoView />} />
+        <Route exact path="/salidasProducto/:id?" element={<SalidasProdcutoView />} />
         <Route exact path="/vender/:id" element={<NuevaSalidaV2 />} />
         <Route exact path="/vender" element={<NuevaSalidaV2 />} />
       </Routes>

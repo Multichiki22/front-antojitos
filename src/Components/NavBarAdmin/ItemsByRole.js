@@ -6,6 +6,7 @@ const entradas = (
     <NavDropdown.Item href="/nuevoProducto">Nuevo Producto</NavDropdown.Item>
     <NavDropdown.Divider />
     <NavDropdown.Item href="/entradasFecha">Entradas por fecha</NavDropdown.Item>
+    <NavDropdown.Item href="/entradasProducto">Entradas por producto</NavDropdown.Item>
   </NavDropdown>
 );
 
@@ -27,6 +28,9 @@ const salidasAdmin = (
     <NavDropdown.Item href="/resumen">Resumen Hoy</NavDropdown.Item>
     <NavDropdown.Divider />
     <NavDropdown.Item href="/historico">Historico</NavDropdown.Item>
+    <NavDropdown.Divider />
+    <NavDropdown.Item href="/salidasFecha">Salidas por fecha</NavDropdown.Item>
+    <NavDropdown.Item href="/salidasProducto">Salidas producto</NavDropdown.Item>
   </NavDropdown>
 );
 

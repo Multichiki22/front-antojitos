@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import api from "../../axiosConfig/axios";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import Cargando from "../Cargando/Cargando";
-import formatNumbers from "../../utilities/formatNumbers";
+import formatNumbers from "../../utilities/formatNumbers.ts";
 
 function Salidas(props) {
   const [modal, setModal] = useState(false);

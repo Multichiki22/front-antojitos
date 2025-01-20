@@ -19,7 +19,7 @@ import {
   Typography,
 } from '@mui/material';
 import salidasHoyService from '../../Services/SalidasService.ts';
-import formatNumbers from '../../utilities/formatNumbers.js';
+import formatNumbers from '../../utilities/formatNumbers.ts';
 import theme from '../../theme/theme.js';
 import Cargando from '../Cargando/Cargando.jsx';
 

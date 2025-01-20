@@ -14,11 +14,10 @@ import productService from '../../Services/ProductService.ts';
 import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
 import { useParams } from 'react-router-dom';
 import { productoOriginal } from '../../types/productoType.ts';
-import formatNumbers from '../../utilities/formatNumbers.js';
 import Cargando from '../Cargando/Cargando.jsx';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import extractNumberFromFormat from '../../utilities/extractNumbreFromFormat.js';
+import extractNumberFromFormat from '../../utilities/extractNumbreFromFormat.ts';
 import ConfirmationDialog from './ConfirmationDialog.tsx';
 
 export default function EditarProductos() {
@@ -30,11 +29,11 @@ export default function EditarProductos() {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
   const fetchData = async () => {
-    setLoading(true);
     if (id == undefined) {
       showError('Id for product not found');
       return;
     }
+    setLoading(true);
     productService
       .getProductosById(id)
       .then((result) => {
@@ -162,7 +161,7 @@ export default function EditarProductos() {
                   label="Precio nuevo:"
                   id="precio"
                   name="precioDeVenta"
-                  value={'$ ' + formatNumbers(formik.values.precioDeVenta)}
+                  value={formik.values.precioDeVenta}
                   onChange={formik.handleChange}
                   variant="filled"
                   type="string"

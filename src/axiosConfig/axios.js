@@ -63,6 +63,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         })
         .catch((refreshError) => {
+        console.debug("Error refreshing", refreshError)
          alert("Por seguridad debe volver a ingresar")
          localStorage.removeItem("accessToken");
          localStorage.removeItem("refreshToken");

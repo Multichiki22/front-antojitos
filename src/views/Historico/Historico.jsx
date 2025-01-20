@@ -38,7 +38,7 @@ function Historico() {
   const handleSearch = () => {
     api
       .get(
-        `salidas/historico/fecha/lista?fecha=${extractorDeFechas(startDate)}`
+        `salidas/historico/review/lista?fecha=${extractorDeFechas(startDate)}`
       )
       .then((response) => {
         setSalidas(response.data);

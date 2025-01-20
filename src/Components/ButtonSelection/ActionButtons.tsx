@@ -4,28 +4,21 @@ import { useEffect, useState } from 'react';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 import BuildIcon from '@mui/icons-material/Build';
 import { useNavigate } from 'react-router-dom';
 
 interface actionButtonsProps {
   productId: number;
+  multiButton: boolean
 }
 
 export default function ActionButtons(props: actionButtonsProps) {
-  const { productId } = props;
-  const [multiButton, setMultiButton] = useState(false);
-  const aprovedRoles = ['SuperAdmin', 'Admin'];
+  const { productId, multiButton } = props;
+
+
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const role = localStorage.getItem('role');
-    if (role) {
-      if (aprovedRoles.includes(role)) {
-        setMultiButton(true);
-      }
-    }
-  }, []);
 
   return (
     <>
@@ -49,6 +42,13 @@ export default function ActionButtons(props: actionButtonsProps) {
             <PlaylistAddIcon
               onClick={() => {
                 navigate(`/entradasProducto/${productId}`);
+              }}
+            />
+          </IconButton>
+          <IconButton>
+            <PlaylistRemoveIcon
+              onClick={() => {
+                navigate(`/salidasProducto/${productId}`);
               }}
             />
           </IconButton>

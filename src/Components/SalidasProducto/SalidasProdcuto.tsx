@@ -11,23 +11,23 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Toolbar,
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import entradasService from '../../Services/EntradasService.ts';
+import salidasService from '../../Services/SalidasService.ts';
 import { useSnackBar } from '../../Hooks/useSnackBarHook.tsx';
-import RowEntradasProducto from './RowEntradasProducto.tsx';
+import RowSalidasProducto from './RowSalidasProducto.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cargando from '../Cargando/Cargando.jsx';
 import theme from '../../theme/theme.js';
 import { productoOriginal } from '../../types/productoType.ts';
 import productService from '../../Services/ProductService.ts';
 import ProductSearch from '../ProductSearch/ProductSearch.tsx';
+import { salidasType } from '../../types/salidasType.ts';
 
-const EntradasProducto = () => {
-  const [entradas, setEntradas] = useState([]);
+const SalidasProducto = () => {
+  const [salidas, setSalidas] = useState<salidasType[]>([]);
   const [allProducts, setAllProducts] = useState<productoOriginal[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<productoOriginal | null>(null);
   const navigate = useNavigate();
@@ -41,11 +41,11 @@ const EntradasProducto = () => {
       return;
     }
     setLoading(true);
-    entradasService
+    salidasService
       .getHistoricoProductos(productId)
       .then((result) => {
-        setEntradas(result);
-        showSuccess('Succes');
+        setSalidas(result);
+        showSuccess('Success');
       })
       .catch((error) => {
         showError(error.message);
@@ -79,7 +79,7 @@ const EntradasProducto = () => {
   const handleProductChange = (product: productoOriginal | null) => {
     setSelectedProduct(product);
     if (product) {
-      navigate(`/entradasProducto/${product.id}`);
+      navigate(`/salidasProducto/${product.id}`);
     }
   };
 
@@ -92,7 +92,7 @@ const EntradasProducto = () => {
           <Grid container sx={{ md: { px: 6 } }}>
             <Grid item xs={12} sm={5} sx={{ px: { xs: 2, sm: 0 }, display: 'flex', alignContent: 'center', py: 2 }}>
               <Typography sx={{ flex: '100%' }} variant="h5" id="title" component="div">
-                Entradas del producto
+                Salidas del producto
               </Typography>
             </Grid>
             <Grid item xs={12} sm={5} sx={{ px: { xs: 2, sm: 0 }, display: 'flex', alignContent: 'center', py: 2 }}>
@@ -114,29 +114,29 @@ const EntradasProducto = () => {
           <Cargando />
         ) : (
           <>
-            {entradas.length > 0 ? (
+            {salidas.length > 0 ? (
               <TableContainer component={Paper} sx={{ width: '100%' }}>
                 <Table aria-label="collapsible table">
                   <TableHead>
                     <TableRow>
                       <TableCell />
                       <TableCell>Producto</TableCell>
-                      <TableCell>Total entrados</TableCell>
-                      <TableCell>Costo individual</TableCell>
+                      <TableCell>Cantidad salida</TableCell>
+                      <TableCell>Valor salida</TableCell>
                       <TableCell>Fecha</TableCell>
-                      <TableCell>Acciones</TableCell>
+                      <TableCell>Salidas producto</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {entradas.map((entrada) => (
-                      <RowEntradasProducto entrada={entrada} />
+                    {salidas.map((salida) => (
+                      <RowSalidasProducto key={salida.id} salida={salida} />
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
             ) : (
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Typography variant="h4">No se encontro ese producto</Typography>
+                <Typography variant="h4">No se encontraron salidas de este producto</Typography>
               </Box>
             )}
           </>
@@ -145,4 +145,5 @@ const EntradasProducto = () => {
     </>
   );
 };
-export default EntradasProducto;
+
+export default SalidasProducto;
