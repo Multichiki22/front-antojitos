@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,9 +9,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useSnackBar } from '../../Hooks/useSnackBarHook';
+import categoriaService from '../../Services/CategoriasService';
 
 
-const ProductForm = () => {
+const NuevoProductoV2 = () => {
   const [formData, setFormData] = useState({
     productName: '',
     packageCount: 0,
@@ -21,6 +23,11 @@ const ProductForm = () => {
     category: '',
   });
 
+  const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true);
+  const { showError, showSuccess } = useSnackBar();
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({
@@ -28,6 +35,17 @@ const ProductForm = () => {
       [name]: value,
     }));
   };
+
+  
+  useEffect(() => {
+    setLoading(true)
+    categoriaService.getAll().then((result) => {
+      setCategories(result)
+      showSuccess('Success')
+    }).catch((error) => {
+      showSuccess('Algo salio mal,obteniendo las categorias ')
+    }).finally(() => { setLoading(false) })
+  }, [])
 
   const calculateResults = () => {
     const { packageCount, unitsPerPackage, packageCost, sellingPrice } = formData;
@@ -172,4 +190,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default NuevoProductoV2;
