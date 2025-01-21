@@ -126,8 +126,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 }
 
 const InventarioV2Memo = memo(function InventarioV2() {
-  const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof Data>('cantidad');
+  const [order, setOrder] = useState<Order>('desc');
+  const [orderBy, setOrderBy] = useState<keyof Data>('nombre');
   const [data, setData] = useState<Data[]>([]);
   const [loading, setLoading] = useState(true);
   const [multiButton, setMultiButton] = useState(false);
