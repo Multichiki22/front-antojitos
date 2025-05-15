@@ -20,11 +20,11 @@ import EntradasFechaView from "./views/HistoricoEntradasFecha/EntradasFechaView.
 import InventarioView from "./views/InventarioView/InventarioView.tsx";
 import NuevaSalidaV2 from "./Components/NuevaSalida/NuevaSalidaV2.tsx";
 import EditarProductosView from "./views/EditarProducto/EditarProductoV2.tsx";
-//import NuevoProductoV2 from "./views/NuevoProductoV2/NuevoProductoV2.tsx";
 import EntradasProductoView from "./views/HistoricoEntradasProducto/EntradaProductoView.tsx";
 import SalidasProdcutoView from "./views/HistoricoSalidasProducto/SalidasProductoView.tsx";
 import SalidasFecha from "./Components/SalidasFecha/SalidasFecha.tsx";
-import NuevoProducto from "./Components/NuevoProducto/NuevoProducto.jsx";
+import NuevoProductoView from "./views/NuevoProductoView/NuevoProductoView.tsx";
+//import NuevoProducto from "./Components/NuevoProducto/NuevoProducto.jsx";
 
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/nuevoUsuario" element={<NuevoUsuario />} />
         <Route exact path="/nuevaEntrada" element={<NuevaEntrada />} />
-        <Route exact path="/nuevoProducto" element={<NuevoProducto />} />
+        <Route exact path="/nuevoProducto" element={<NuevoProductoView />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/misSalidas" element={<MisSalidas />} />
         <Route exact path="/salidas" element={<Salidas />} />
