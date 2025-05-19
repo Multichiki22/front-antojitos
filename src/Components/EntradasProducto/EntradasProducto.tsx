@@ -45,7 +45,7 @@ const EntradasProducto = () => {
       .getHistoricoProductos(productId)
       .then((result) => {
         setEntradas(result);
-        showSuccess('Succes');
+         console.log('%c Entradas cargads con exito ', 'color:#2e7d32');
       })
       .catch((error) => {
         showError(error.message);

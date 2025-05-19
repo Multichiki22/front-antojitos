@@ -24,7 +24,7 @@ const NuevoProductoV2 = () => {
       .getAll()
       .then((result) => {
         setCategories(result);
-        showSuccess('Categorías cargadas exitosamente');
+        console.log('%c Categorias cargadas con exito ', 'color:#2e7d32');
       })
       .catch((error) => {
         showError('Algo salió mal obteniendo las categorías: ' + error);
@@ -39,8 +39,6 @@ const NuevoProductoV2 = () => {
     initialValues: initialProductValues,
     validationSchema: nuevoProductoValidationSchema,
     onSubmit: (values) => {
-      console.log("Values",values);
-      
       handleCreateProduct(values);
     },
   });

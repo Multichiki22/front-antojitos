@@ -40,8 +40,7 @@ export default function EditarProductos() {
         setProducto(result);
         setUpdateInfo(result);
         formik.setValues(result);
-
-        showSuccess('Succes');
+        console.log('%c Productos cargados con exito ', 'color:#2e7d32');
       })
       .catch((error) => {
         showError(error.message);

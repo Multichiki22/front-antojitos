@@ -1,3 +1,4 @@
+import EntradaFormValues from '../entities/entradaFormValues.ts';
 import Servicebase from './ServiceBase.ts';
 
 const entradasService = {
@@ -10,8 +11,15 @@ const entradasService = {
       throw error;
     });
   },
+
   getHistoricoProductos: async (productoId: string) => {
     return await Servicebase.get(`entradas/historico/producto/lista?producto=${productoId}`).catch((error) => {
+      throw error;
+    });
+  },
+
+  crearNuevaEntrada: async (entradaValues: EntradaFormValues) => {
+    return await Servicebase.post(`entradas`,entradaValues).catch((error) => {
       throw error;
     });
   },

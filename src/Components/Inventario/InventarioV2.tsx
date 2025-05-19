@@ -140,7 +140,7 @@ const InventarioV2Memo = memo(function InventarioV2() {
       .getProductosActuales()
       .then((result) => {
         setData(result);
-        showSuccess('Success');
+        console.log('%c Entradas cargads con exito ', 'color:#2e7d32')
       })
       .catch((error) => {
         showError(error.message);
